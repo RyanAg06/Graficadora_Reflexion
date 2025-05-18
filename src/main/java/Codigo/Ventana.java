@@ -32,7 +32,7 @@ public class Ventana extends JFrame
         /* Panel Inicio */
         pPlano = new PanelPlano();
         add(pPlano);
-        pPlano.setLocation(25, 10);
+        pPlano.setLocation(13, 10);
         
         /* Inputs X y Y */
         inputX = new JTextField("3");

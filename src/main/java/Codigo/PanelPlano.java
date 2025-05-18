@@ -2,15 +2,16 @@ package Codigo;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import javax.swing.*;
 
 public class PanelPlano extends JPanel
 {
     /* Variables */
-    private int w = 550, h = 400, escala = 30;
+    private Graphics g;
+    private int w, h, escala, x = 0, y = 0;
     private String eje = "Original";
-    private int x = 0,y = 0;
-    Graphics g;
     
     /* Constructor */
     public PanelPlano()
@@ -22,9 +23,32 @@ public class PanelPlano extends JPanel
     private void componentes()
     {
         /* Panel Inicio */
-        setSize(550, 400);
+        setSize(560, 400);
         setLayout(null);
         setBackground(Color.lightGray);
+        w = getWidth();
+        h = getHeight();
+        escala = 30;
+        addMouseWheelListener((MouseWheelEvent e) ->
+        {
+            /* Acercar o Alejar Plano */
+            if(e.getUnitsToScroll() > 0)
+            {
+                escala -= 2;
+            }
+            else
+            {
+                escala += 2;
+            }
+            
+            /* Verifico que no Pase de Negativos */
+            if(escala <= 0)
+            {
+                escala = 1;
+            }
+            repaint();
+        });
+        
     }
     public void dibujarLinea(int[] x)
     {
